@@ -15,7 +15,7 @@ export async function getForecastWeatherData(location) {
   const url = new URL('/v1/forecast.json', urlBase);
   url.searchParams.set('key', apiKey);
   url.searchParams.set('q', location);
-  url.searchParams.set('days', 3);
+  url.searchParams.set('days', 4);
 
   const response = await fetch(url);
   const weatherData = await response.json();
