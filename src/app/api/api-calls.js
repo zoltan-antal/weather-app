@@ -8,6 +8,11 @@ export async function getCurrentWeatherData(location) {
 
   const response = await fetch(url);
   const weatherData = await response.json();
+
+  if ('error' in weatherData) {
+    throw new Error(weatherData.error.message);
+  }
+
   return weatherData;
 }
 
@@ -19,5 +24,10 @@ export async function getForecastWeatherData(location) {
 
   const response = await fetch(url);
   const weatherData = await response.json();
+
+  if ('error' in weatherData) {
+    throw new Error(weatherData.error.message);
+  }
+
   return weatherData;
 }
