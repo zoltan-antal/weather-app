@@ -73,6 +73,7 @@ export function processCurrentWeatherData(raw) {
       wind_mph: raw.current.wind_mph,
       wind_dir: raw.current.wind_dir,
       humidity: raw.current.humidity,
+      cloud: raw.current.cloud,
       feelslike_c: raw.current.feelslike_c,
       feelslike_f: raw.current.feelslike_f,
       uv: raw.current.uv,
