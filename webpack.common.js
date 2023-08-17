@@ -20,7 +20,11 @@ module.exports = {
         test: /\.(png|svg|jpe?g|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/images/[name].[contenthash][ext]',
+          filename: (pathData) => {
+            let filename = pathData.filename;
+            filename = filename.replace('src/', '');
+            return filename;
+          }
         }
       },
     ],
