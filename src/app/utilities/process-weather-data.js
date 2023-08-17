@@ -1,3 +1,5 @@
+import { zonedTimeToUtc } from 'date-fns-tz';
+
 const iconRootPath = '//cdn.weatherapi.com/weather/64x64';
 
 function reduceForecastDay(raw) {
@@ -33,7 +35,7 @@ function selectForecastHours(raw) {
   const currentTime = raw.location.localtime;
 
   let hoursLeft = 24;
-  const forecastHours = {};
+  const forecastHours = [];
 
   // eslint-disable-next-line no-restricted-syntax
   for (const forecastday of raw.forecast.forecastday) {
@@ -59,7 +61,8 @@ export function processCurrentWeatherData(raw) {
       name: raw.location.name,
       region: raw.location.region,
       country: raw.location.country,
-      localtime: raw.location.localtime,
+      utc_time: zonedTimeToUtc(raw.location.localtime, raw.location.tz_id),
+      timezone: raw.location.tz_id,
     },
     current: {
       temp_c: raw.current.temp_c,
@@ -83,11 +86,11 @@ export function processCurrentWeatherData(raw) {
 
 export function processForecastWeatherData(raw) {
   return {
-    days: {
-      0: reduceForecastDay(raw.forecast.forecastday[0]),
-      1: reduceForecastDay(raw.forecast.forecastday[1]),
-      2: reduceForecastDay(raw.forecast.forecastday[2]),
-    },
+    days: [
+      reduceForecastDay(raw.forecast.forecastday[0]),
+      reduceForecastDay(raw.forecast.forecastday[1]),
+      reduceForecastDay(raw.forecast.forecastday[2]),
+    ],
     hours: selectForecastHours(raw),
   };
 }
