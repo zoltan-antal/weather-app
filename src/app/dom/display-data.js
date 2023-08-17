@@ -43,7 +43,7 @@ function displayLocation(weatherData) {
       weatherData.location.utc_time,
       weatherData.location.timezone,
     ),
-    'kk:mm',
+    'HH:mm',
   );
 }
 
@@ -65,7 +65,7 @@ function createHourElement(hourData) {
 
   const time = document.createElement('h3');
   time.classList.add('time');
-  time.textContent = format(new Date(hourData.time), 'kk:mm');
+  time.textContent = format(new Date(hourData.time), 'HH:mm');
   hour.appendChild(time);
 
   const conditionIcon = document.createElement('img');
