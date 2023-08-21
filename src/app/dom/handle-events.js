@@ -23,6 +23,7 @@ export default function setUpEventListeners() {
 
     try {
       const weatherData = await fetchWeatherData(location);
+      localStorage.setItem('location', location);
       searchErrorDisplay.classList.add('hidden');
       displayWeatherData(weatherData);
     } catch (error) {

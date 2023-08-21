@@ -45,8 +45,5 @@ export default async function fetchWeatherData(location) {
     forecastWeatherData,
   );
 
-  console.log(weatherData);
-  localStorage.setItem('location', location);
-
   return weatherData;
 }
