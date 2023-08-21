@@ -5,11 +5,11 @@ const iconRootPath = '//cdn.weatherapi.com/weather/64x64';
 function reduceForecastDay(raw) {
   return {
     date: raw.date,
-    maxtemp_c: raw.day.maxtemp_c,
-    maxtemp_f: raw.day.maxtemp_f,
-    mintemp_c: raw.day.mintemp_c,
-    mintemp_f: raw.day.mintemp_f,
-    daily_chance_of_rain: raw.day.daily_chance_of_rain,
+    maxtemp_c: Number(raw.day.maxtemp_c),
+    maxtemp_f: Number(raw.day.maxtemp_f),
+    mintemp_c: Number(raw.day.mintemp_c),
+    mintemp_f: Number(raw.day.mintemp_f),
+    daily_chance_of_rain: Number(raw.day.daily_chance_of_rain),
     condition: {
       text: raw.day.condition.text,
       icon: raw.day.condition.icon.replace(iconRootPath, ''),
@@ -20,14 +20,14 @@ function reduceForecastDay(raw) {
 function reduceForecastHour(raw) {
   return {
     time: raw.time,
-    temp_c: raw.temp_c,
-    temp_f: raw.temp_f,
-    is_day: raw.is_day,
+    temp_c: Number(raw.temp_c),
+    temp_f: Number(raw.temp_f),
+    is_day: Number(raw.is_day),
     condition: {
       text: raw.condition.text,
       icon: raw.condition.icon.replace(iconRootPath, ''),
     },
-    chance_of_rain: raw.chance_of_rain,
+    chance_of_rain: Number(raw.chance_of_rain),
   };
 }
 
@@ -73,21 +73,21 @@ export function processCurrentWeatherData(raw) {
       timezone: raw.location.tz_id,
     },
     current: {
-      temp_c: raw.current.temp_c,
-      temp_f: raw.current.temp_f,
-      is_day: raw.current.is_day,
+      temp_c: Number(raw.current.temp_c),
+      temp_f: Number(raw.current.temp_f),
+      is_day: Number(raw.current.is_day),
       condition: {
         text: raw.current.condition.text,
         icon: raw.current.condition.icon.replace(iconRootPath, ''),
       },
-      wind_kph: raw.current.wind_kph,
-      wind_mph: raw.current.wind_mph,
+      wind_kph: Number(raw.current.wind_kph),
+      wind_mph: Number(raw.current.wind_mph),
       wind_dir: raw.current.wind_dir,
-      humidity: raw.current.humidity,
-      cloud: raw.current.cloud,
-      feelslike_c: raw.current.feelslike_c,
-      feelslike_f: raw.current.feelslike_f,
-      uv: raw.current.uv,
+      humidity: Number(raw.current.humidity),
+      cloud: Number(raw.current.cloud),
+      feelslike_c: Number(raw.current.feelslike_c),
+      feelslike_f: Number(raw.current.feelslike_f),
+      uv: Number(raw.current.uv),
     },
   };
 }
