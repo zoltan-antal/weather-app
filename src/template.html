@@ -18,9 +18,9 @@
         <img class="search-icon" src="assets/icons/magnify.svg" alt="">
       </button>
     </form>
-    <div class="units">
-      <button class="metric">˚C, km/h</button>
-      <button class="imperial">˚F, mph</button>
+    <div class="units-toggle">
+      <button class="metric-button selected">˚C, km/h</button>
+      <button class="imperial-button">˚F, mph</button>
     </div>
   </div>
   <div class="main">
@@ -33,8 +33,10 @@
     <div class="current">
       <div class="current-main">
         <img src="assets/empty-placeholder.png" alt="Initial zero value" class="condition-icon">
-        <h2 class="temp"></h2>
-        <h3 class="feelslike"></h3>
+        <h2 class="temp_c metric"></h2>
+        <h2 class="temp_f imperial"></h2>
+        <h3 class="feelslike_c metric"></h3>
+        <h3 class="feelslike_f imperial"></h3>
         <h3 class="condition-text"></h3>
       </div>
       <div class="current-other">
@@ -52,7 +54,8 @@
         </div>
         <div class="wind">
           <h4 class="title">Wind</h4>
-          <h4 class="value"></h4>
+          <h4 class="value_kph metric"></h4>
+          <h4 class="value_mph imperial"></h4>
         </div>
       </div>
     </div>

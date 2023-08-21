@@ -4,8 +4,6 @@ import displayWeatherData from './display-data';
 export default async function initializePage() {
   const location = localStorage.getItem('location');
 
-  console.log(location);
-
   if (!location) {
     return;
   }
