@@ -1,21 +1,21 @@
 import displayWeatherData from './display-data';
 import fetchWeatherData from '../async/async-functions';
 
-const locationInput = document.querySelector('.search-input');
-const locationSearchForm = document.querySelector('.search');
-
-const hourlyButton = document.querySelector('button.hourly-button');
-const dailyButton = document.querySelector('button.daily-button');
-
-const hourlyDiv = document.querySelector('.hourly');
-const dailyDiv = document.querySelector('.daily');
-
-const metricButton = document.querySelector('button.metric-button');
-const imperialButton = document.querySelector('button.imperial-button');
-
-const searchErrorDisplay = document.querySelector('.search-error');
-
 export default function setUpEventListeners() {
+  const locationInput = document.querySelector('.search-input');
+  const locationSearchForm = document.querySelector('.search');
+
+  const hourlyButton = document.querySelector('button.hourly-button');
+  const dailyButton = document.querySelector('button.daily-button');
+
+  const hourlyDiv = document.querySelector('.hourly');
+  const dailyDiv = document.querySelector('.daily');
+
+  const metricButton = document.querySelector('button.metric-button');
+  const imperialButton = document.querySelector('button.imperial-button');
+
+  const searchErrorDisplay = document.querySelector('.search-error');
+
   locationSearchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const location = locationInput.value;
