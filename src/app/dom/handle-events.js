@@ -13,6 +13,8 @@ const dailyDiv = document.querySelector('.daily');
 const metricButton = document.querySelector('button.metric-button');
 const imperialButton = document.querySelector('button.imperial-button');
 
+const searchErrorDisplay = document.querySelector('.search-error');
+
 export default function setUpEventListeners() {
   locationSearchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -21,9 +23,10 @@ export default function setUpEventListeners() {
 
     try {
       const weatherData = await fetchWeatherData(location);
+      searchErrorDisplay.classList.add('hidden');
       displayWeatherData(weatherData);
     } catch (error) {
-      alert("Couldn't fetch weather data for that location.");
+      searchErrorDisplay.classList.remove('hidden');
     }
   });
 
