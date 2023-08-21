@@ -3,38 +3,13 @@ import { utcToZonedTime } from 'date-fns-tz';
 
 require.context('../../assets', true, /.*/);
 
-const locationElement = document.querySelector('.main .location');
-const locationTownElement = locationElement.querySelector('.town');
-const locationAddressElement = locationElement.querySelector('.address');
-const locationLocalDateElement = locationElement.querySelector('.local-date');
-const locationLocalTimeElement = locationElement.querySelector('.local-time');
-
-const currentElement = document.querySelector('.main .current');
-const currentConditionIconElement =
-  currentElement.querySelector('.condition-icon');
-const currentTempCElement = currentElement.querySelector('.temp_c');
-const currentTempFElement = currentElement.querySelector('.temp_f');
-const currentFeelslikeCElement = currentElement.querySelector('.feelslike_c');
-const currentFeelslikeFElement = currentElement.querySelector('.feelslike_f');
-const currentConditionTextElement =
-  currentElement.querySelector('.condition-text');
-
-const currentHumidityValueElement =
-  currentElement.querySelector('.humidity .value');
-const currentCloudValueElement = currentElement.querySelector('.cloud .value');
-const currentUVValueElement = currentElement.querySelector('.uv .value');
-const currentWindValueKphElement =
-  currentElement.querySelector('.wind .value_kph');
-const currentWindValueMphElement =
-  currentElement.querySelector('.wind .value_mph');
-
-const hourlyElement = document.querySelector('.main .hourly');
-const dailyElement = document.querySelector('.main .daily');
-
-const metricButton = document.querySelector('button.metric-button');
-const imperialButton = document.querySelector('button.imperial-button');
-
 function displayLocation(weatherData) {
+  const locationElement = document.querySelector('.main .location');
+  const locationTownElement = locationElement.querySelector('.town');
+  const locationAddressElement = locationElement.querySelector('.address');
+  const locationLocalDateElement = locationElement.querySelector('.local-date');
+  const locationLocalTimeElement = locationElement.querySelector('.local-time');
+
   locationTownElement.textContent = weatherData.location.name;
   locationAddressElement.textContent = weatherData.location.region
     ? `${weatherData.location.region}, ${weatherData.location.country}`
@@ -56,6 +31,27 @@ function displayLocation(weatherData) {
 }
 
 function displayCurrentWeather(weatherData) {
+  const currentElement = document.querySelector('.main .current');
+
+  const currentConditionIconElement =
+    currentElement.querySelector('.condition-icon');
+  const currentTempCElement = currentElement.querySelector('.temp_c');
+  const currentTempFElement = currentElement.querySelector('.temp_f');
+  const currentFeelslikeCElement = currentElement.querySelector('.feelslike_c');
+  const currentFeelslikeFElement = currentElement.querySelector('.feelslike_f');
+  const currentConditionTextElement =
+    currentElement.querySelector('.condition-text');
+
+  const currentHumidityValueElement =
+    currentElement.querySelector('.humidity .value');
+  const currentCloudValueElement =
+    currentElement.querySelector('.cloud .value');
+  const currentUVValueElement = currentElement.querySelector('.uv .value');
+  const currentWindValueKphElement =
+    currentElement.querySelector('.wind .value_kph');
+  const currentWindValueMphElement =
+    currentElement.querySelector('.wind .value_mph');
+
   currentConditionIconElement.src = `assets/weather-icons${weatherData.current.condition.icon}`;
   currentConditionIconElement.alt = weatherData.current.condition.text;
   currentTempCElement.textContent = `${Math.round(
@@ -181,6 +177,8 @@ function createDayElement(dayData) {
 }
 
 function displayHourlyWeather(weatherData) {
+  const hourlyElement = document.querySelector('.main .hourly');
+
   while (hourlyElement.firstChild) {
     hourlyElement.removeChild(hourlyElement.lastChild);
   }
@@ -192,6 +190,8 @@ function displayHourlyWeather(weatherData) {
 }
 
 function displayDailyWeather(weatherData) {
+  const dailyElement = document.querySelector('.main .daily');
+
   while (dailyElement.firstChild) {
     dailyElement.removeChild(dailyElement.lastChild);
   }
@@ -209,6 +209,9 @@ function selectUnitPreference() {
 
   const metricElements = document.querySelectorAll('.metric');
   const imperialElements = document.querySelectorAll('.imperial');
+
+  const metricButton = document.querySelector('button.metric-button');
+  const imperialButton = document.querySelector('button.imperial-button');
 
   if (!unitPreference || unitPreference === 'metric') {
     imperialElements.forEach((element) => {
