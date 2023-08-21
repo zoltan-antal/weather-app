@@ -35,10 +35,14 @@ function displayCurrentWeather(weatherData) {
 
   const currentConditionIconElement =
     currentElement.querySelector('.condition-icon');
-  const currentTempCElement = currentElement.querySelector('.temp_c');
-  const currentTempFElement = currentElement.querySelector('.temp_f');
-  const currentFeelslikeCElement = currentElement.querySelector('.feelslike_c');
-  const currentFeelslikeFElement = currentElement.querySelector('.feelslike_f');
+  const currentTempMetricElement = currentElement.querySelector('.temp.metric');
+  const currentTempImperialElement =
+    currentElement.querySelector('.temp.imperial');
+  const currentFeelslikeMetricElement =
+    currentElement.querySelector('.feelslike.metric');
+  const currentFeelslikeImperialElement = currentElement.querySelector(
+    '.feelslike.imperial',
+  );
   const currentConditionTextElement =
     currentElement.querySelector('.condition-text');
 
@@ -47,31 +51,33 @@ function displayCurrentWeather(weatherData) {
   const currentCloudValueElement =
     currentElement.querySelector('.cloud .value');
   const currentUVValueElement = currentElement.querySelector('.uv .value');
-  const currentWindValueKphElement =
-    currentElement.querySelector('.wind .value_kph');
-  const currentWindValueMphElement =
-    currentElement.querySelector('.wind .value_mph');
+  const currentWindValueMetricElement = currentElement.querySelector(
+    '.wind .value.metric',
+  );
+  const currentWindValueImperialElement = currentElement.querySelector(
+    '.wind .value.imperial',
+  );
 
   currentConditionIconElement.src = `assets/weather-icons${weatherData.current.condition.icon}`;
   currentConditionIconElement.alt = weatherData.current.condition.text;
-  currentTempCElement.textContent = `${Math.round(
+  currentTempMetricElement.textContent = `${Math.round(
     weatherData.current.temp_c,
   )} ˚C`;
-  currentTempFElement.textContent = `${Math.round(
+  currentTempImperialElement.textContent = `${Math.round(
     weatherData.current.temp_f,
   )} ˚F`;
-  currentFeelslikeCElement.textContent = `Feels like ${Math.round(
+  currentFeelslikeMetricElement.textContent = `Feels like ${Math.round(
     weatherData.current.feelslike_c,
   )}˚`;
-  currentFeelslikeFElement.textContent = `Feels like ${Math.round(
+  currentFeelslikeImperialElement.textContent = `Feels like ${Math.round(
     weatherData.current.feelslike_f,
   )}˚`;
   currentConditionTextElement.textContent = weatherData.current.condition.text;
   currentHumidityValueElement.textContent = `${weatherData.current.humidity} %`;
   currentCloudValueElement.textContent = `${weatherData.current.cloud} %`;
   currentUVValueElement.textContent = weatherData.current.uv;
-  currentWindValueKphElement.textContent = `${weatherData.current.wind_kph} km/h ${weatherData.current.wind_dir}`;
-  currentWindValueMphElement.textContent = `${weatherData.current.wind_mph} mph ${weatherData.current.wind_dir}`;
+  currentWindValueMetricElement.textContent = `${weatherData.current.wind_kph} km/h ${weatherData.current.wind_dir}`;
+  currentWindValueImperialElement.textContent = `${weatherData.current.wind_mph} mph ${weatherData.current.wind_dir}`;
 }
 
 function createHourElement(hourData) {
@@ -89,17 +95,17 @@ function createHourElement(hourData) {
   conditionIcon.alt = hourData.condition.text;
   hour.appendChild(conditionIcon);
 
-  const tempC = document.createElement('h3');
-  tempC.classList.add('temp_c');
-  tempC.classList.add('metric');
-  tempC.textContent = `${Math.round(hourData.temp_c)}˚`;
-  hour.appendChild(tempC);
+  const tempMetric = document.createElement('h3');
+  tempMetric.classList.add('temp');
+  tempMetric.classList.add('metric');
+  tempMetric.textContent = `${Math.round(hourData.temp_c)}˚`;
+  hour.appendChild(tempMetric);
 
-  const tempF = document.createElement('h3');
-  tempF.classList.add('temp_c');
-  tempF.classList.add('imperial');
-  tempF.textContent = `${Math.round(hourData.temp_f)}˚`;
-  hour.appendChild(tempF);
+  const tempImperial = document.createElement('h3');
+  tempImperial.classList.add('temp');
+  tempImperial.classList.add('imperial');
+  tempImperial.textContent = `${Math.round(hourData.temp_f)}˚`;
+  hour.appendChild(tempImperial);
 
   const chanceOfRain = document.createElement('div');
   chanceOfRain.classList.add('chance-of-rain');
@@ -134,29 +140,29 @@ function createDayElement(dayData) {
   conditionIcon.alt = dayData.condition.text;
   day.appendChild(conditionIcon);
 
-  const maxTempC = document.createElement('h3');
-  maxTempC.classList.add('max-temp');
-  maxTempC.classList.add('metric');
-  maxTempC.textContent = `${Math.round(dayData.maxtemp_c)}˚`;
-  day.appendChild(maxTempC);
+  const maxTempMetric = document.createElement('h3');
+  maxTempMetric.classList.add('max-temp');
+  maxTempMetric.classList.add('metric');
+  maxTempMetric.textContent = `${Math.round(dayData.maxtemp_c)}˚`;
+  day.appendChild(maxTempMetric);
 
-  const maxTempF = document.createElement('h3');
-  maxTempF.classList.add('max-temp');
-  maxTempF.classList.add('imperial');
-  maxTempF.textContent = `${Math.round(dayData.maxtemp_f)}˚`;
-  day.appendChild(maxTempF);
+  const maxTempImperial = document.createElement('h3');
+  maxTempImperial.classList.add('max-temp');
+  maxTempImperial.classList.add('imperial');
+  maxTempImperial.textContent = `${Math.round(dayData.maxtemp_f)}˚`;
+  day.appendChild(maxTempImperial);
 
-  const minTempC = document.createElement('h3');
-  minTempC.classList.add('min-temp');
-  minTempC.classList.add('metric');
-  minTempC.textContent = `${Math.round(dayData.mintemp_c)}˚`;
-  day.appendChild(minTempC);
+  const minTempMetric = document.createElement('h3');
+  minTempMetric.classList.add('min-temp');
+  minTempMetric.classList.add('metric');
+  minTempMetric.textContent = `${Math.round(dayData.mintemp_c)}˚`;
+  day.appendChild(minTempMetric);
 
-  const minTempF = document.createElement('h3');
-  minTempF.classList.add('min-temp');
-  minTempF.classList.add('imperial');
-  minTempF.textContent = `${Math.round(dayData.mintemp_f)}˚`;
-  day.appendChild(minTempF);
+  const minTempImperial = document.createElement('h3');
+  minTempImperial.classList.add('min-temp');
+  minTempImperial.classList.add('imperial');
+  minTempImperial.textContent = `${Math.round(dayData.mintemp_f)}˚`;
+  day.appendChild(minTempImperial);
 
   const chanceOfRain = document.createElement('div');
   chanceOfRain.classList.add('chance-of-rain');
