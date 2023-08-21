@@ -225,10 +225,17 @@ function selectUnitPreference() {
   }
 }
 
+function revealPageElements() {
+  document.querySelector('.location').classList.remove('hidden');
+  document.querySelector('.current').classList.remove('hidden');
+  document.querySelector('.forecast-toggle').classList.remove('hidden');
+}
+
 export default function displayWeatherData(weatherData) {
   displayLocation(weatherData);
   displayCurrentWeather(weatherData);
   displayHourlyWeather(weatherData);
   displayDailyWeather(weatherData);
   selectUnitPreference();
+  revealPageElements();
 }
