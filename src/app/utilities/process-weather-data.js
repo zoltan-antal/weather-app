@@ -4,7 +4,7 @@ const iconRootPath = '//cdn.weatherapi.com/weather/64x64';
 
 function reduceForecastDay(raw) {
   return {
-    date: raw.date,
+    date: new Date(raw.date),
     maxtemp_c: Number(raw.day.maxtemp_c),
     maxtemp_f: Number(raw.day.maxtemp_f),
     mintemp_c: Number(raw.day.mintemp_c),
@@ -19,7 +19,7 @@ function reduceForecastDay(raw) {
 
 function reduceForecastHour(raw) {
   return {
-    time: raw.time,
+    time: new Date(raw.time),
     temp_c: Number(raw.temp_c),
     temp_f: Number(raw.temp_f),
     is_day: Number(raw.is_day),
