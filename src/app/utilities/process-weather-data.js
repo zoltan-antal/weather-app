@@ -32,7 +32,10 @@ function reduceForecastHour(raw) {
 }
 
 function selectForecastHours(raw) {
-  const currentTime = raw.location.localtime;
+  const currentTime = zonedTimeToUtc(
+    new Date(raw.location.localtime),
+    raw.location.tz_id,
+  );
 
   let hoursLeft = 24;
   const forecastHours = [];
@@ -45,7 +48,9 @@ function selectForecastHours(raw) {
         break;
       }
 
-      if (hour.time > currentTime) {
+      if (
+        zonedTimeToUtc(new Date(hour.time), raw.location.tz_id) > currentTime
+      ) {
         forecastHours[24 - hoursLeft] = reduceForecastHour(hour);
         hoursLeft -= 1;
       }
@@ -61,7 +66,10 @@ export function processCurrentWeatherData(raw) {
       name: raw.location.name,
       region: raw.location.region,
       country: raw.location.country,
-      utc_time: zonedTimeToUtc(raw.location.localtime, raw.location.tz_id),
+      utc_time: zonedTimeToUtc(
+        new Date(raw.location.localtime),
+        raw.location.tz_id,
+      ),
       timezone: raw.location.tz_id,
     },
     current: {
