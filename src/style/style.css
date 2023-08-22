@@ -90,9 +90,9 @@ body {
 }
 
 .search-error {
-  color: red;
+  color:firebrick;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   margin-top: 3px;
 }
 
