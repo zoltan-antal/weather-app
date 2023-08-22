@@ -24,10 +24,10 @@ export default function setUpEventListeners() {
     try {
       const weatherData = await fetchWeatherData(location);
       localStorage.setItem('location', location);
-      searchErrorDisplay.classList.add('hidden');
+      searchErrorDisplay.classList.add('invisible');
       displayWeatherData(weatherData);
     } catch (error) {
-      searchErrorDisplay.classList.remove('hidden');
+      searchErrorDisplay.classList.remove('invisible');
     }
   });
 
